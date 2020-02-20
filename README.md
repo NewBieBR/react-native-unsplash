@@ -2,7 +2,7 @@
 
 Online photos gallery search using Unplash
 
-<img src="./assets/demo.gif" height=400>
+<img src="https://raw.github.com/NewBieBR/react-native-unsplash/master/assets/demo.gif" height=400>
 
 ## Installation
 
