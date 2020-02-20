@@ -247,6 +247,9 @@ export default class UnsplashSearch extends React.Component<
                 resizeMode="cover"
                 {...imageComponentProps}
               />
+              <View style={styles.authorNameCont}>
+                <Text style={styles.authorName}>{photo.user.name}</Text>
+              </View>
             </TouchableOpacity>
           );
         }}
@@ -331,5 +334,16 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     overflow: 'hidden',
     marginBottom: 10,
+  },
+  authorNameCont: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    padding: 5,
+  },
+  authorName: {
+    fontSize: 12,
+    fontWeight: '300',
+    color: 'white',
   },
 });

@@ -27,10 +27,16 @@ yarn add react-native-unsplash
 ## Basic Usage
 
 ```tsx
-onOnlinePhotoSelect() {
-    
+import UnsplashSearch, { UnsplashPhoto } from 'react-native-unsplash';
+
+onOnlinePhotoSelect(photo: UnsplashPhoto) {
+    console.log(photo.urls.regular)
 }
 
-<UnsplashSearch onPhotoSelect={this.onOnlinePhotoSelect/>
-
+render() {
+  return <UnsplashSearch
+    accessKey={...} 
+    onPhotoSelect={this.onOnlinePhotoSelect
+  />;
+}
 ```
