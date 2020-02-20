@@ -1,0 +1,27 @@
+{
+  "name": "react-native-unsplash",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-package": "rm -f *.tgz && npm pack && cd examples && yarn cache clean && yarn remove react-native-unsplash && yarn add ../react-native-unsplash-*.tgz"
+  },
+  "keywords": [
+    "React Native",
+    "React",
+    "Typescript",
+    "react-native",
+    "react"
+  ],
+  "author": "Hung Arthur Dao",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NewBieBR/react-native-unsplash.git"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.20",
+    "@types/react-native": "^0.61.16"
+  }
+}
