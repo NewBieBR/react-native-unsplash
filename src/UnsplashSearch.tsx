@@ -5,6 +5,7 @@ import {
   FlatList,
   Image,
   KeyboardAvoidingView,
+  Linking,
   Modal,
   ModalProps,
   SafeAreaView,
@@ -81,6 +82,7 @@ export interface UnsplashPhoto {
     username: string;
     name: string;
     profile_image: { small: string; medium: string; large: string };
+    links: { html: string };
   };
   tags: any[];
 }
@@ -115,6 +117,7 @@ export default class UnsplashSearch extends React.Component<
       querying: false,
     };
     this.onChangeText = this.onChangeText.bind(this);
+    this.onEndReached = this.onEndReached.bind(this);
   }
 
   componentDidMount() {
@@ -130,6 +133,7 @@ export default class UnsplashSearch extends React.Component<
     const res = await axios.get(url);
     if (page === 1) {
       this.setState({ photos: res.data.results, querying: false });
+      console.log(res.data.results);
       return;
     }
     const newPhotos = this.state.photos.concat(res.data.results);
@@ -183,6 +187,11 @@ export default class UnsplashSearch extends React.Component<
     this.queryTimeOut = setTimeout(() => {
       this.queryPhotos(query);
     }, this.props.queryAfterInput);
+  }
+
+  onEndReached() {
+    this.queryPhotos(this.state.query, this.state.currentPage + 1);
+    this.setState({ currentPage: this.state.currentPage + 1 });
   }
 
   renderSearchBar() {
@@ -244,6 +253,7 @@ export default class UnsplashSearch extends React.Component<
         style={styles.photosListCont}
         data={this.state.photos}
         keyExtractor={photo => photo.id}
+        onEndReached={this.onEndReached}
         renderItem={({ item: photo }) => {
           return (
             <TouchableOpacity
@@ -260,7 +270,12 @@ export default class UnsplashSearch extends React.Component<
                 {...imageComponentProps}
               />
               <View style={styles.authorNameCont}>
-                <Text style={styles.authorName}>{photo.user.name}</Text>
+                <TouchableOpacity
+                  style={styles.flexCenter}
+                  onPress={() => Linking.openURL(photo.user.links.html)}
+                >
+                  <Text style={styles.authorName}>{photo.user.name}</Text>
+                </TouchableOpacity>
               </View>
             </TouchableOpacity>
           );
