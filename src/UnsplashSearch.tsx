@@ -34,6 +34,7 @@ export interface UnsplashSearchProps {
   // follow by 'by Unsplash' is required
   // https://help.unsplash.com/en/articles/2511245-unsplash-api-guidelines
 
+  searchBarStyle?: any;
   searchInputProps?: Partial<TextInputProps>;
   searchIconComponent?: () => React.ReactChild;
 
@@ -187,10 +188,10 @@ export default class UnsplashSearch extends React.Component<
 
   renderSearchBar() {
     const { query } = this.state;
-    const { searchInputProps, searchIconComponent } = this.props;
+    const { searchBarStyle, searchInputProps, searchIconComponent } = this.props;
     return (
       <View style={styles.searchBarCont}>
-        <View style={styles.searchBar}>
+        <View style={[styles.searchBar, searchBarStyle]}>
           {searchIconComponent && (
             <View style={[styles.searchSideComponent]}>
               {searchIconComponent()}
