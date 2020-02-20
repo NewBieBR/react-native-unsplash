@@ -2,6 +2,8 @@
 
 Online photos gallery search using Unplash
 
+<img src="./assets/demo.gif" height=400>
+
 ## Installation
 
 1. [Register](https://unsplash.com/developers) you developer account for Unsplash API

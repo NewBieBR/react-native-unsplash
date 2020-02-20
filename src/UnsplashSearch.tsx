@@ -45,6 +45,7 @@ export interface UnsplashSearchProps {
   onPhotoSelect?: (photo: UnsplashPhoto) => void;
   photoMode: 'raw' | 'full' | 'regular' | 'small' | 'thumb';
   renderPhotosList?: (photos: UnsplashPhoto[]) => React.ReactNode;
+  queryAfterInput?: number; // ms
 }
 
 export interface UnsplashPhoto {
@@ -99,7 +100,10 @@ export default class UnsplashSearch extends React.Component<
     searchInputProps: { placeholder: 'Search...' },
     photosPerPage: 20,
     photoMode: 'regular',
+    queryAfterInput: 250,
   };
+
+  queryTimeOut: any;
 
   constructor(props: UnsplashSearchProps) {
     super(props);
@@ -175,7 +179,10 @@ export default class UnsplashSearch extends React.Component<
 
   onChangeText(query: string) {
     this.setState({ query, currentPage: 1 });
-    this.queryPhotos(query);
+    clearTimeout(this.queryTimeOut);
+    this.queryTimeOut = setTimeout(() => {
+      this.queryPhotos(query);
+    }, this.props.queryAfterInput);
   }
 
   renderSearchBar() {
