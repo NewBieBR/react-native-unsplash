@@ -133,7 +133,6 @@ export default class UnsplashSearch extends React.Component<
     const res = await axios.get(url);
     if (page === 1) {
       this.setState({ photos: res.data.results, querying: false });
-      console.log(res.data.results);
       return;
     }
     const newPhotos = this.state.photos.concat(res.data.results);
