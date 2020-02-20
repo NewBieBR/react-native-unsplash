@@ -127,7 +127,6 @@ export default class UnsplashSearch extends React.Component<
     this.setState({ querying: page === 1 });
     const { accessKey, photosPerPage } = this.props;
     const url = `https://api.unsplash.com/search/photos?client_id=${accessKey}&query=${query}&page=${page}&per_page=${photosPerPage}`;
-    console.log(url);
     const res = await axios.get(url);
     if (page === 1) {
       this.setState({ photos: res.data.results, querying: false });
@@ -188,7 +187,11 @@ export default class UnsplashSearch extends React.Component<
 
   renderSearchBar() {
     const { query } = this.state;
-    const { searchBarStyle, searchInputProps, searchIconComponent } = this.props;
+    const {
+      searchBarStyle,
+      searchInputProps,
+      searchIconComponent,
+    } = this.props;
     return (
       <View style={styles.searchBarCont}>
         <View style={[styles.searchBar, searchBarStyle]}>
@@ -198,6 +201,7 @@ export default class UnsplashSearch extends React.Component<
             </View>
           )}
           <TextInput
+            clearButtonMode="always"
             value={query}
             onChangeText={this.onChangeText}
             returnKeyType="search"
@@ -321,11 +325,15 @@ const styles = StyleSheet.create({
   searchBar: {
     flexDirection: 'row',
     backgroundColor: LightGray,
-    padding: 8,
-    paddingVertical: 10,
+    paddingHorizontal: 8,
     borderRadius: 5,
   },
-  searchBarInput: { fontSize: 14, paddingHorizontal: 8 },
+  searchBarInput: {
+    fontSize: 14,
+    paddingHorizontal: 8,
+    flex: 1,
+    paddingVertical: 10,
+  },
   searchSideComponent: {},
   photosListCont: {
     flex: 1,
