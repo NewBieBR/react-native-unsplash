@@ -13,8 +13,8 @@ Online photos gallery search using Unplash
 3. Go to the **Keys** section of your app's page and copy your keys into a new file.
 ```typescript
 const UnsplashKeys = {
-  accessKey: 'MgllgRq7xd3TYgttzB1esqxfnFvC90sn9HLbUTRWclw',
-  secretKey: 'E0BCAZUBPNQqc0UvpCxkOuHDNbSzAaxXqscX-kSHxks',
+  accessKey: '...',
+  secretKey: '...',
 };
 
 export default UnsplashKeys;
